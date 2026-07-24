@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The UX Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./styles/all.min.css">
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/media-query/mobile.css">
+</head>
+
+<body data-bs-spy="scroll" data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0"
+    data-bs-target="#sections">
+
+    <!-- Start -->
+    <!-- navbar Start -->
+    <nav id="sections" class="navbar navbar-expand-md py-0 z-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center max-w py-3">
+            <div class="d-flex align-items-center">
+                <div class="nav-icon d-flex justify-content-center align-items-center">
+                    <i class="fa-solid fa-address-book" style="color: rgb(255, 255, 255);"></i>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <h2 class="mb-0 fw-bold">Contact<span>Hub</span></h2>
+                    <p class="d-none d-sm-flex">Smart Contact Manager</p>
+                </div>
+            </div>
+            <div id="nav-main" class="mt-md-0 d-flex align-items-center justify-content-end">
+                <button id="addContactBtn" class="d-flex justify-content-center align-items-center gap-2"
+                    data-bs-toggle="modal" data-bs-target="#contactModal">
+                    <i class="fa-solid fa-plus" style="color: rgb(255, 255, 255);"></i>
+                    <span class="d-none d-sm-flex">Add Contact</span>
+                    <span class="d-flex d-sm-none">Add</span>
+                </button>
+                <div class="nav-right d-flex align-items-center gap-2 d-none d-sm-flex">
+                    <i class="fa-solid fa-bell" style="color: #6a7282;"></i>
+                </div>
+                <div class="nav-right d-flex align-items-center gap-2 d-none d-sm-flex">
+                    <i class="nav-item fa-solid fa-gear" style="color: #6a7282;"></i>
+                </div>
+                <div class="nav-right d-flex align-items-center gap-2">
+                    <img class="nav-item nav-profile object-fit-cover w-100 h-100" src="./Images/avatar-2.jpg"
+                        alt="avatar-2">
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- navbar End -->
+
+    <section class="parent-1">
+        <div id="main" class="content max-w">
+            <div class="container px-0 rounded-4">
+                <div class="row g-3">
+                    <div class="col-6 col-md-4">
+                        <div class="contact-box d-flex align-items-center gap-3">
+                            <div class="contact-icon contact-icon-1 d-flex align-items-center justify-content-center">
+                                <i class="nav-item fa-solid fa-users" style="color: #ffffff;"></i>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span class="text-uppercase">TOTAL</span>
+                                <span id="totalContacts">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="contact-box d-flex align-items-center gap-3">
+                            <div class="contact-icon contact-icon-2 d-flex align-items-center justify-content-center">
+                                <i class="nav-item fa-solid fa-star" style="color: #ffffff;"></i>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span class="text-uppercase">favorites</span>
+                                <span id="totalFavContacts">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="contact-box d-flex align-items-center gap-3">
+                            <div class="contact-icon contact-icon-3 d-flex align-items-center justify-content-center">
+                                <i class="nav-item fa-solid fa-heart-pulse" style="color: #ffffff;"></i>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span class="text-uppercase">emergency</span>
+                                <span id="totalEmergencyContacts">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 col-xxl-9">
+                        <div class="search-box">
+                            <div class="all-contacts d-flex flex-column gap-1">
+                                <h2>All Contacts</h2>
+                                <span>Manage and organize your <span id="totalContactsSpan">0</span> contacts</span>
+                            </div>
+                            <div class="position-relative">
+                                <div
+                                    class="search-icon position-absolute d-flex align-items-center justify-content-center">
+                                    <i class="nav-item fa-solid fa-magnifying-glass" style="color: #99a1af;"></i>
+                                </div>
+                                <input id="searchInput" class="mb-4" type="search"
+                                    placeholder="Search by name, phone, or email...">
+                            </div>
+                            <div class="contacts-box d-flex w-100 justify-content-between">
+                                <div id="noContacts" class="empty-boxes d-flex justify-content-center w-100 mx-auto ">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div
+                                            class="contacts-icon d-flex align-items-center justify-content-center mb-3">
+                                            <i class="fa-solid fa-address-book fs-3" style="color: #D1D5DC;"></i>
+                                        </div>
+                                        <span>No contacts found</span>
+                                        <p>Click "Add Contact" to get started</p>
+                                    </div>
+                                </div>
+                                    <div id="contactCardContainer" class="row g-3 mb-4 w-100 d-none">
+                                        <!-- <div class="col-12 col-sm-6 d-none">
+                                            <div class="added-contact-box d-flex flex-column">
+                                                <div class="d-flex flex-column">
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="profile-icon d-flex justify-content-center align-items-center position-relative">
+                                                            DW
+                                                            <div
+                                                                class="fav-icon position-absolute d-flex justify-content-center align-items-center rounded-circle">
+                                                                <i class="nav-item fa-solid fa-star"></i>
+                                                            </div>
+                                                            <div
+                                                                class="eme-icon position-absolute d-flex justify-content-center align-items-center rounded-circle">
+                                                                <i class="nav-item fa-solid fa-heart-pulse"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-column gap-1">
+                                                            <span>Dieter Williams</span>
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                <div
+                                                                    class="d-flex justify-content-center align-items-center">
+                                                                    <i class="nav-item fa-solid fa-phone"
+                                                                        style="color: #155DFC;"></i>
+                                                                </div>
+                                                                <span>+201056461558</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-column gap-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <div
+                                                                class="email-icon d-flex justify-content-center align-items-center">
+                                                                <i class="nav-item fa-solid fa-envelope"
+                                                                    style="color: #7f22fe;"></i>
+                                                            </div>
+                                                            <p>jubyxe@mailinator.com</p>
+                                                        </div>
+                                                        <div class="d-flex align-items-center">
+                                                            <div
+                                                                class="loc-icon d-flex justify-content-center align-items-center">
+                                                                <i class="nav-item fa-solid fa-location-dot"
+                                                                    style="color: #009966;"></i>
+                                                            </div>
+                                                            <p>Veniam fugit minus</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>Friends</span>
+                                                        <span><i class="nav-item fa-solid fa-heart-pulse"
+                                                                style="color: #ec003f;"></i>
+                                                            Emergency</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex">
+                                                        <a id="callBtn" href=""
+                                                            class="d-flex justify-content-center align-items-center">
+                                                            <i class="nav-item fa-solid fa-phone"></i>
+                                                        </a>
+                                                        <button id="emailBtn"
+                                                            class="d-flex justify-content-center align-items-center">
+                                                            <i class="nav-item fa-solid fa-envelope"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <button id="favBtn"
+                                                            class="d-flex justify-content-center align-items-center">
+                                                            <i class="nav-item fa-solid fa-star"></i>
+                                                        </button>
+                                                        <button id="emergencyBtn"
+                                                            class="d-flex justify-content-center align-items-center">
+                                                            <i class="nav-item fa-solid fa-heart-pulse"></i>
+                                                        </button>
+                                                        <button id="editBtn"
+                                                            class="d-flex justify-content-center align-items-center">
+                                                            <i class="nav-item fa-solid fa-pen"></i>
+                                                        </button>
+                                                        <button id="deleteBtn"
+                                                            class="d-flex justify-content-center align-items-center">
+                                                            <i class="nav-item fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xxl-3">
+                        <div class="side-box">
+                            <div class="d-flex flex-column gap-4">
+                                <div class="fav-box overflow-hidden">
+                                    <div class="fav-head d-flex">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <i class="nav-item fa-solid fa-star" style="color: #ffffff;"></i>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <span>Favorites</span>
+                                            <p>Quick access to starred contacts</p>
+                                        </div>
+                                    </div>
+                                    <div id="bigFavItem" class="fav-body">
+                                        <p id="emptyStateFav" class="text-center d-flex justify-content-center">No favorites yet</p>
+                                        <div id="smallFavItem" class="d-flex align-items-center w-100 d-none">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                PL
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <span>Prescott Leonard</span>
+                                                <span>01000000000</span>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <a href="" class="d-flex justify-content-center align-items-center">
+                                                    <i class="nav-item fa-solid fa-phone"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fav-box">
+                                    <div class="fav-head heart-head d-flex">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <i class="nav-item fa-solid fa-heart-pulse" style="color: #ffffff;"></i>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <span>Emergency</span>
+                                            <p>Important contacts for urgent calls</p>
+                                        </div>
+                                    </div>
+                                    <div id="bigEmergencyItem" class="fav-body">
+                                        <p id="emptyStateEmergency" class="text-center">No emergency contacts</p>
+                                        <div id="smallEmergencyItem" class="d-flex align-items-center w-100 d-none">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                PL
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <span>Prescott Leonard</span>
+                                                <span>01000000000</span>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <a href=""
+                                                    class="d-flex justify-content-center align-items-center eme-a">
+                                                    <i class="nav-item fa-solid fa-phone"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Form -->
+        <div id="contactModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header px-4">
+                        <h1 class="modal-title fs-5 fw-bold text-dark" id="exampleModalLabel">Add New Contact</h1>
+                        <button id="closeModalBtn" class="d-flex justify-content-center align-items-center ms-auto" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <div id="avatarPreview"
+                                class="form-icon rounded-circle d-flex justify-content-center align-items-center overflow-hidden">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+                            </div>
+                            <label for="avatarInput" class="form-label py-2 px-3 d-flex gap-2 align-items-center">
+                                <i type="button" class="fa-solid fa-camera" style="color: #6A7282;"></i>
+                                <span>Change Photo</span>
+                                <input id="avatarInput" class="visually-hidden" accept="image/*" type="file">
+                            </label>
+                            <input type="hidden" id="avatarPath" value="">
+                        </div>
+
+
+                        <form id="contactForm" class="second-form w-100">
+                            <fieldset class="d-flex flex-column">
+                                <div class="d-flex flex-column gap-2">
+                                    <label for="contactName" class="text-capitalize">Full
+                                        Name <span class="red-star">*</span></label>
+                                    <input id="contactName" type="text" placeholder="Enter full name" class="">
+                                    <p id="warningName" class="input-warning d-none">Name should contain only letters and spaces (2-50 characters)</p>
+                                    
+                                </div>
+                                <div class="d-flex flex-column gap-2">
+                                    <label for="contactPhone" class="text-capitalize">Phone Number <span
+                                            class="red-star">*</span></label>
+                                    <input id="contactPhone" type="text" placeholder="e.g., 01012345678">
+                                    <p id="warningPhone" class="input-warning d-none">Please enter a valid Egyptian phone number</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2">
+                                    <label for="contactEmail" class="text-capitalize">Email Address</label>
+                                    <input id="contactEmail" type="email" placeholder="john@example.com">
+                                    <p id="warningEmail" class="input-warning d-none">Please enter a valid email address</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2">
+                                    <label for="contactAddress" class="text-capitalize">Address</label>
+                                    <input id="contactAddress" type="text" placeholder="Enter full name">
+                                </div>
+                                <div class="d-flex flex-column gap-2 w-100">
+                                    <label for="contactGroup" class="text-capitalize">Group</label>
+                                    <select id="contactGroup" class="form-select" aria-label="Large select example">
+                                        <option selected>Select a group</option>
+                                        <option>Family</option>
+                                        <option>Friends</option>
+                                        <option>Work</option>
+                                        <option>School</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex flex-column gap-2 w-100">
+                                    <label for="messages" class="text-capitalize">Notes</label>
+                                    <textarea id="contactNotes" name="messages" rows="2" id="messages"
+                                        placeholder="Add notes about this contact"></textarea>
+                                </div>
+                                <div class="form-message d-flex gap-2">
+                                    <div class="d-flex">
+                                        <input id="contactFavorite" type="checkbox" id="check-fav" class="check-box">
+                                        <label for="contactFavorite">
+                                            <i class="fa-solid fa-star" style="color: #ffb900;"></i>
+                                            Favorite
+                                        </label>
+                                    </div>
+                                    <div class="d-flex">
+                                        <input id="contactEmergency" type="checkbox" id="check-eme" class="check-box">
+                                        <label for="contactEmergency">
+                                            <i class="fa-solid fa-heart-pulse" style="color: #ff2056;"></i>
+                                            Emergency
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer border-0 pt-0 d-flex gap-3 flex-nowrap pb-4">
+                        <button id="cancelModalBtn" type="button" class="w-50 btn btn-light"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button id="submitModalBtn"
+                            class="w-50 form-btn d-flex justify-content-center align-items-center gap-2">
+                            <i class="fa-solid fa-check" style="color: rgb(255, 255, 255);"></i>
+                            <span>Save Contact</span>
+                        </button>
+                        <button id="updateModalBtn"
+                            class="w-50 form-btn d-none d-flex justify-content-center align-items-center gap-2">
+                            <i class="fa-solid fa-check" style="color: rgb(255, 255, 255);"></i>
+                            <span>Save Contact</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The End -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/all.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
